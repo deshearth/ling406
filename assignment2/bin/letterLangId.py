@@ -94,12 +94,12 @@ def predict(test_data, model):
     return np.array(predicted_values)
 
 def write_solution(predicted_values):
-    idx = np.arange(predicted_values.size)
+    idx = np.arange(1, predicted_values.size+1)
     out = np.array(zip(idx, predicted_values))
     workdir = get_workdir()
     out_path = os.path.join(workdir, 'output', 'letterLangId.out')
     np.savetxt(out_path, out, fmt='%s', delimiter=' ')
-    print "Refer to output file under work directory for solution"
+    print "Refer to output file under work directory for solution\n"
 
 def evaluate(predicted_values):
     'calculate the accuracy'

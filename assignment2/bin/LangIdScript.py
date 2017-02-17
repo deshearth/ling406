@@ -1,4 +1,4 @@
-#!usr/bin/env python
+#!/usr/bin/env python
 import letterLangId
 import wordLangId
 def letter_lang_id_script():
@@ -18,8 +18,8 @@ def word_lang_id_script():
     wordLangId.write_solution(predicted_values)
 
 if __name__ == '__main__':
-    print "This is part I: language identification by letter\n"
+    print "This is part I: language identification by letter"
     letter_lang_id_script()
 
-    print "This is part II: language identification by word\n"
+    print "This is part II: language identification by word"
     word_lang_id_script()
