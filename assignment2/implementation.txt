@@ -1,0 +1,28 @@
+part1: letter bigram
+
+example:
+	training data: Approval of the Minutes of the previous sitting
+	testing data: Are there any comments ?
+
+	implementation:
+training:
+	# preprocess the raw text 
+	separate the sentence into single string and store it as string array
+	s = ['≤', 'A', 'p', 'p', ..., 'g', '≥'] # use ≤≥ as starting and ending mark
+										   # of a sentence
+	create a shifted s_ string array by one char
+	s_ = ['A', 'p', 'p', ..., 'g', '≥', '≤']
+	then element-wise concanctate two string arrays and keep every elements
+	except '≤≥'
+	ss_ = ['≤A', 'Ap', ..., 'g≥'].
+	# train 
+	count the occurence of every element in the whole coporus
+	smooth
+
+predict:
+	# preprocess the raw text
+	get tss_ = ['≤A', 'Ar', ..., ' ?', '?≥']
+	get the probability of this sentence.
+
+		
+
