@@ -22,6 +22,7 @@ def get_data():
     testin_path = join_path(workdir, 'input') 
     data = {}
     data['test'] = readtxt(join_path(testin_path,'LangId.test'), 'test')
+    data['targets'] = set(preprocess(data['test'])['ww_'])
     data['train'] = {}
     data['train']['English'] = preprocess(readtxt(join_path(data_path,'LangId.train.English')))
     data['train']['French'] = preprocess(readtxt(join_path(data_path,'LangId.train.French')))
@@ -50,15 +51,18 @@ def biwordconc(w):
     ww_ = reduce(np.core.defchararray.add, [w, u' ', w_])
     return np.delete(ww_, np.where(ww_==u'≥ ≤'))
     
-def train(train_data):
+def train(data):
     """get the model.
     since every element vv_ in ww_, v appears first, then v_,
     P(v_|v) = P(vv_) / P(v) = #(vv_) / #(v)
     """
-    model = pd.DataFrame()
     #fetch all bichars and remove the redundancy
-    wwkeys = pd.DataFrame(train_data).loc['ww_',:].values
-    wwkeys =  list(set(itertools.chain(*map(list, wwkeys))))
+    train_data = data['train']
+    targ_wwkeys = data['targets']
+    train_wwkeys = pd.DataFrame(train_data).loc['ww_',:].values
+    train_wwkeys =  set(itertools.chain(*map(list, train_wwkeys)))
+    wwkeys = targ_wwkeys.intersection(train_wwkeys) 
+    model = pd.DataFrame(index=wwkeys, columns=train_data.keys(), dtype='float')
     #fill the table with probs
     for dkey in train_data.keys():
         w, ww_ = train_data[dkey]['w'], train_data[dkey]['ww_']
