@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""This is the main function for language identification
+program.
+Author: Yifeng Chu(ychu26)"""
+
 import letterLangId
 import wordLangId
 def letter_lang_id_script():

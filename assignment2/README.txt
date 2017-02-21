@@ -1,3 +1,5 @@
+" Assignmnet 2: language identification
+" Author: Yifeng Chu (ychu26)
 ++++++++++++++++++++++++
 +  THIS IS IMPORTANT   +
 ++++++++++++++++++++++++
